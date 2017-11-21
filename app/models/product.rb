@@ -11,13 +11,16 @@ class Product < ApplicationRecord
   def as_json
     {
       id: id,
+      clothe_type: clothe_type,
       length: length,
       color: color,
       discount: is_discounted,
-      tax: tax,
-      total: total,
+      price: price, 
+      # tax: tax,
+      # total: total,
       description: description,
-      active: active
+      active: active, 
+      image: image
     }
   end
 end

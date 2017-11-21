@@ -5,6 +5,7 @@ class V1::ProductsController < ApplicationController
   end
   def create 
     product = Product.new(
+      clothe_type: params["clothe_type"],
       length: params["length"],
       color: params["color"],
       price: params["price"], 
@@ -16,13 +17,12 @@ class V1::ProductsController < ApplicationController
     render json: product.as_json
   end
   def show
-    clothes_id = params["id"]
-    product = Product.find_by(id: clothes_id)
+    product = Product.find_by(id: params["id"])
     render json: product.as_json
   end
   def update
-    clothes_id = params["id"] 
-    product = Product.find_by(id: clothes_id)
+    product = Product.find_by(id: params["id"])
+    product.clothe_type = params["clothe_type"] || product.clothe_type
     product.length = params["length"] || product.length
     product.color = params["color"] || product.color
     product.price = params["price"] || product.price
@@ -33,8 +33,7 @@ class V1::ProductsController < ApplicationController
     render json: product.as_json
   end 
   def destroy
-    clothes_id = params["id"]
-    product = Product.find_by(id: clothes_id)
+    product = Product.find_by(id: params["id"])
     product.destroy
     render json: {message: "The item has been removed!"}
   end
