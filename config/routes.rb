@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get "/short_shirt_url" => "products#short_shirt_method"
-  get "/long_shirt_url" => "products#long_shirt_method"
-  get "/short_pant_url" => "products#short_pant_method"
-  get "/long_pant_url" => "products#long_pant_method"
+  namespace :v1 do 
+    get "/clothes" => "products#index"
+    post "/clothes" => "products#create"
+    get "/clothes/:id" => "products#show"
+    patch "/clothes/:id" => "products#update"
+    delete "/clothes/:id" => "products#destroy"
+  end 
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sleeve_length: MyString
+  color: MyString
+  price: MyString
+  image: MyString
+
+two:
+  sleeve_length: MyString
+  color: MyString
+  price: MyString
+  image: MyString
