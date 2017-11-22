@@ -13,8 +13,11 @@ class V1::ProductsController < ApplicationController
       description: params["description"],
       # active: params["active"]
       )
-    product.save
-    render json: product.as_json
+    if product.save
+      render json: product.as_json
+    else 
+      render json: {errors: product.errors.full_messages}, status: :bad_request
+    end
   end
   def show
     product = Product.find_by(id: params["id"])
@@ -29,7 +32,11 @@ class V1::ProductsController < ApplicationController
     product.image = params["image"] || product.image
     product.description = params["description"] || product.description
     product.active = params["active"] || product.active
-    product.save
+    if product.save
+      render json: product.as_json
+    else 
+      render json: {errors: product.errors.full_messages}, status: :bad_request
+    end
     render json: product.as_json
   end 
   def destroy
@@ -37,20 +44,4 @@ class V1::ProductsController < ApplicationController
     product.destroy
     render json: {message: "The item has been removed!"}
   end
-  # def short_shirt_method
-  #   product = Product.first 
-  #   render json: product.as_json
-  # end 
-  # def long_shirt_method
-  #   product = Product.second 
-  #   render json: product.as_json
-  # end 
-  # def short_pant_method
-  #   product = Product.third
-  #   render json: product.as_json
-  # end 
-  # def long_pant_method
-  #   product = Product.fourth
-  #   render json: product.as_json
-  # end 
 end

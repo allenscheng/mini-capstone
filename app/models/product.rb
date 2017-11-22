@@ -1,4 +1,10 @@
 class Product < ApplicationRecord
+  validates :clothe_type, presence: true
+  validates :length, presence: true
+  validates :color, presence: true
+  validates :description, length: {maximum: 100}
+  validates :price, numericality: {greater_than: 0}
+
   def is_discounted
     price.to_i < 10
   end
@@ -16,8 +22,8 @@ class Product < ApplicationRecord
       color: color,
       discount: is_discounted,
       price: price, 
-      # tax: tax,
-      # total: total,
+      tax: tax,
+      total: total,
       description: description,
       active: active, 
       image: image
