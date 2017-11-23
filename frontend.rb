@@ -2,8 +2,11 @@ require "unirest"
 require "pp"
 system "clear"
 
-puts "Please enter in an option"
+puts "Welcome to the clothes app."
+puts "Please enter in an option."
 puts "1 - to print all the clothes"
+puts "  1.1 - to search name"
+puts "  1.2 - to sort price in ascending order"
 puts "2 - to create a new store clothes"
 puts "3 - to display an individual item"
 puts "4 - to update an item"
@@ -16,10 +19,20 @@ if user_choice == "1"
   response = Unirest.get("#{base_url}/v1/clothes")
   clothes = response.body
   pp clothes 
+elsif user_choice == "1.1"
+  print "Please enter a name: "
+  input_name = gets.chomp 
+  response = Unirest.get("#{base_url}/v1/clothes", parameters: {name_search: input_name})
+  clothes = response.body
+  pp clothes
+elsif user_choice == "1.2"
+  response = Unirest.get("#{base_url}/v1/clothes", parameters: {price_sort: true})
+  clothes = response.body
+  pp clothes 
 elsif user_choice == "2"
   params = {}
   print "Enter clothe type: "
-  params["clothe_type"] = gets.chomp
+  params["name"] = gets.chomp
   print "Enter in length: "
   params["length"] = gets.chomp
   print "Enter a color: "
@@ -47,8 +60,8 @@ elsif user_choice == "4"
   response = Unirest.get("#{base_url}/v1/clothes/#{clothes_id}")
   clothes = response.body
   params = {}
-  print "Enter updated clothe type(#{clothes["clothe_type"]}): "
-  params["clothe_type"] = gets.chomp
+  print "Enter updated clothe type(#{clothes["name"]}): "
+  params["name"] = gets.chomp
   print "Enter updated length(#{clothes["length"]}): "
   params["length"] = gets.chomp
   print "Enter updated color(#{clothes["color"]}): "

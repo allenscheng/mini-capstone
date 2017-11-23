@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  validates :clothe_type, presence: true
+  validates :name, presence: true
   validates :length, presence: true
   validates :color, presence: true
   validates :description, length: {maximum: 100}
@@ -17,7 +17,7 @@ class Product < ApplicationRecord
   def as_json
     {
       id: id,
-      clothe_type: clothe_type,
+      name: name,
       length: length,
       color: color,
       discount: is_discounted,

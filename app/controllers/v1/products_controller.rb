@@ -1,16 +1,22 @@
 class V1::ProductsController < ApplicationController
   def index
-    product = Product.all
-    render json: product.as_json
+    products = Product.all.order(:id => :asc)
+    if params[:name_search]
+      products = products.where("name ILIKE ?", "%#{params[:name_search]}%")
+    end
+    if params[:price_sort]
+      products = Product.all.order(:price => :asc)
+    end
+    render json: products.as_json
   end
   def create 
     product = Product.new(
-      clothe_type: params["clothe_type"],
-      length: params["length"],
-      color: params["color"],
-      price: params["price"], 
-      image: params["image"], 
-      description: params["description"],
+      name:params["name"],
+      length:params["length"],
+      color:params["color"],
+      price:params["price"], 
+      image:params["image"], 
+      description:params["description"],
       # active: params["active"]
       )
     if product.save
@@ -25,7 +31,7 @@ class V1::ProductsController < ApplicationController
   end
   def update
     product = Product.find_by(id: params["id"])
-    product.clothe_type = params["clothe_type"] || product.clothe_type
+    product.name = params["name"] || product.name
     product.length = params["length"] || product.length
     product.color = params["color"] || product.color
     product.price = params["price"] || product.price
