@@ -1,15 +1,24 @@
-product = Product.new({length: "short", color: "red", price: "10.00", image: "http://images.footballfanatics.com/FFImage/thumb.aspx?i=/productImages/_2712000/ff_2712965c_full.jpg&w=340"})
-product.save
-product = Product.new({length: "long", color: "red", price: "11.00", image: "http://nba.frgimages.com/FFImage/thumb.aspx?i=/productImages/_2712000/ff_2712935a_full.jpg&w=340"})
-product.save
-product = Product.new({length: "short", color: "black", price: "7.00", image: "https://assets.academy.com/mgen/79/10568779.jpg?is=500,500"})
-product.save
-product = Product.new({length: "long", color: "black", price: "10.00", image: "https://images-na.ssl-images-amazon.com/images/I/61cJR8nl8qL._UL1500_.jpg"})
-product.save
+supplier = Supplier.new({name: "nike", email: "nike@email.com", phone_number: "213-234-2342"})
+supplier.save 
+supplier = Supplier.new({name: "adidas", email: "adidas@email.com", phone_number:"342-234-9879"})
+supplier.save
 
-
-
-
+product = Product.new({name: "shirt", length: "short", color: "red", price: 10.00, supplier_id: 1 })
+product.save
+image = Image.new(url: "http://images.footballfanatics.com/FFImage/thumb.aspx?i=/productImages/_2712000/ff_2712965c_full.jpg&w=340", product_id: 1)
+image.save 
+product = Product.new({name: "shirt", length: "long", color: "red", price: 11.00, supplier_id: 1})
+product.save
+image = Image.new(url: "http://nba.frgimages.com/FFImage/thumb.aspx?i=/productImages/_2712000/ff_2712935a_full.jpg&w=340", product_id: 2)
+image.save 
+product = Product.new({name: "pant", length: "short", color: "black", price: 7.00, supplier_id: 1})
+product.save
+image = Image.new(url: "https://assets.academy.com/mgen/79/10568779.jpg?is=500,500", product_id: 3)
+image.save 
+product = Product.new({name: "pant", length: "long", color: "black", price: 10.00, supplier_id: 1})
+product.save
+image = Image.new(url: "https://images-na.ssl-images-amazon.com/images/I/61cJR8nl8qL._UL1500_.jpg", product_id: 4)
+image.save 
 
 
 

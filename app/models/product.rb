@@ -4,7 +4,18 @@ class Product < ApplicationRecord
   validates :color, presence: true
   validates :description, length: {maximum: 100}
   validates :price, numericality: {greater_than: 0}
-
+  
+  has_many :orders
+  belongs_to :supplier
+  # the above, rails writes the below for you 
+  # def supplier
+  #   Supplier.find_by(id: self.supplier_id)
+  # end
+  has_many :images 
+  # the above, rails writes the below for you
+  # def images 
+  #   image.where(product_id: self.id)
+  # end
   def is_discounted
     price.to_i < 10
   end
@@ -14,6 +25,7 @@ class Product < ApplicationRecord
   def total
     total = tax + price.to_i
   end
+
   def as_json
     {
       id: id,
@@ -26,7 +38,8 @@ class Product < ApplicationRecord
       total: total,
       description: description,
       active: active, 
-      image: image
+      images: images.map { |image| image.url},
+      product_supplier: supplier.as_json
     }
   end
 end

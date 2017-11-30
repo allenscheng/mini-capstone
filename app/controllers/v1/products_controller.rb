@@ -1,4 +1,5 @@
 class V1::ProductsController < ApplicationController
+  before_action :authenticate_admin, except: [:index, :show]
   def index
     products = Product.all.order(:id => :asc)
     if params[:name_search]
@@ -9,7 +10,7 @@ class V1::ProductsController < ApplicationController
     end
     render json: products.as_json
   end
-  def create 
+  def create  
     product = Product.new(
       name:params["name"],
       length:params["length"],
@@ -17,10 +18,11 @@ class V1::ProductsController < ApplicationController
       price:params["price"], 
       image:params["image"], 
       description:params["description"],
+      user_id: params["user_id"]
       # active: params["active"]
       )
     if product.save
-      render json: product.as_json
+      render json: {status: "Order created successfully"}, status: :created 
     else 
       render json: {errors: product.errors.full_messages}, status: :bad_request
     end
