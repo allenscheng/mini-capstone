@@ -114,6 +114,12 @@ while true
   elsif user_choice == "6"
     response = Unirest.get("#{base_url}/v1/carted_products")
     pp response.body 
+    print "Press 'o' to order the items, or enter to continue: "
+    sub_option = gets.chomp
+    if sub_option == "o"
+      response = Unirest.post("#{base_url}/v1/orders")
+      pp response.body 
+    end
   elsif user_choice == "signup"
     params = {}
     print "Name: "
