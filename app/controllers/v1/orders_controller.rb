@@ -19,10 +19,14 @@ class V1::OrdersController < ApplicationController
       total: total, 
       user_id: current_user.id
       )
+
+    
     if order.save 
       render json: order.as_json
     else
       render json: {errors: order.errors.full_messages}
+
+
     end
   end
 end

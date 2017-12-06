@@ -5,6 +5,13 @@ class Product < ApplicationRecord
   validates :description, length: {maximum: 100}
   validates :price, numericality: {greater_than: 0}
   
+  has_many :carted_products
+  has_many :category_products
+  has_many :categories, through: :category_products
+  #above is the short for below
+  # def products
+  #   catergory_products.map {|category_product| category_product.category}
+  # end
   has_many :orders
   belongs_to :supplier
   # the above, rails writes the below for you 
@@ -39,7 +46,8 @@ class Product < ApplicationRecord
       description: description,
       active: active, 
       images: images.map { |image| image.url},
-      product_supplier: supplier.as_json
+      supplier: supplier.as_json,
+      categories: categories.as_json
     }
   end
 end

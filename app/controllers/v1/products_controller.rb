@@ -8,6 +8,10 @@ class V1::ProductsController < ApplicationController
     if params[:price_sort]
       products = Product.all.order(:price => :asc)
     end
+    if params[:category_id]
+      category = Category.find_by(id: params["category_id"])
+      products = category.products 
+    end
     render json: products.as_json
   end
   def create  
