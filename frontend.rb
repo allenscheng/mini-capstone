@@ -13,7 +13,7 @@ while true
   puts "3 - to display an individual item"
   puts "4 - to update an item"
   puts "5 - to remove an item"
-  puts "6 - view your orders"
+  puts "6 - View shopping cart"
   puts  
   puts "[signup] - Signup (create a user)"
   puts  
@@ -112,7 +112,7 @@ while true
     response = Unirest.delete("#{base_url}/v1/clothes/#{clothes_id}")
     pp response.body
   elsif user_choice == "6"
-    response = Unirest.get("#{base_url}/v1/orders")
+    response = Unirest.get("#{base_url}/v1/carted_products")
     pp response.body 
   elsif user_choice == "signup"
     params = {}
