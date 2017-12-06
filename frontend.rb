@@ -72,8 +72,15 @@ while true
       params["quantity"] = gets.chomp.to_i
       params["product_id"] = clothes_id 
 
-      response = Unirest.post("#{base_url}/v1/orders", parameters: params)
-      pp response.body
+      response = Unirest.post("#{base_url}/v1/carted_products", parameters: params)
+      carted_product = response.body
+      if carted_product["errors"]
+        puts "No good!"
+        p carted_product["errors"]
+      else 
+        puts "All good!"
+        pp carted_product 
+      end
     end
   elsif user_choice == "4"
     print "Enter the id to update: "

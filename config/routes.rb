@@ -17,5 +17,7 @@ Rails.application.routes.draw do
     get "/supplier/:id" => "products#show"
     patch "/supplier/:id" => "products#update"
     delete "/supplier/:id" => "products#destroy"
+
+    post "/carted_products" => "carted_products#create"
   end 
 end
