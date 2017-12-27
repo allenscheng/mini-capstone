@@ -8,10 +8,6 @@ class Product < ApplicationRecord
   has_many :carted_products
   has_many :category_products
   has_many :categories, through: :category_products
-  #above is the short for below
-  # def products
-  #   catergory_products.map {|category_product| category_product.category}
-  # end
   has_many :orders
   belongs_to :supplier
   # the above, rails writes the below for you 

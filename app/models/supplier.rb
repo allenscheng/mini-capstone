@@ -1,8 +1,7 @@
 class Supplier < ApplicationRecord
 
   has_many :products 
-
-
+  
   def as_json
     {
       id: id, 

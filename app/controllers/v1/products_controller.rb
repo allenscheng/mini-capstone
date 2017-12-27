@@ -20,10 +20,11 @@ class V1::ProductsController < ApplicationController
       length:params["length"],
       color:params["color"],
       price:params["price"], 
-      image:params["image"], 
+      # image:params["image"], 
       description:params["description"],
-      user_id: params["user_id"]
+      # user_id: current_user.id
       # active: params["active"]
+      supplier_id: 1
       )
     if product.save
       render json: {status: "Order created successfully"}, status: :created 
