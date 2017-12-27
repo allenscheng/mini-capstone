@@ -6,7 +6,8 @@ var HomePage = {
     return {
       message: "Welcome to Vue.js!",
       products: [],
-      nameFilter: ""
+      nameFilter: "",
+      priceFilter: ""
     };
   },
   mounted: function() {
@@ -21,7 +22,8 @@ var HomePage = {
       var validName = inputProduct.name
         .toLowerCase()
         .includes(this.nameFilter.toLowerCase());
-      return validName;
+      var validPrice = inputProduct.price.includes(this.priceFilter);
+      return validName && validPrice;
     }
   },
   computed: {}

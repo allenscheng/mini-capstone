@@ -64,6 +64,7 @@
   <div class="container">
   <h1>All products</h1>
   <input type="text" v-model="nameFilter" placeholder="Search Name" list="names">
+  <input type="text" v-model="priceFilter" placeholder="Filter Price">
     <div class="row">
       <div class="col-sm-3" v-for="product in products" v-if="isValid(product)">
         <div class="card">
