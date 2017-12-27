@@ -5,7 +5,8 @@ var HomePage = {
   data: function() {
     return {
       message: "Welcome to Vue.js!",
-      products: []
+      products: [],
+      nameFilter: ""
     };
   },
   mounted: function() {
@@ -15,7 +16,14 @@ var HomePage = {
       }.bind(this)
     );
   },
-  methods: {},
+  methods: {
+    isValid: function(inputProduct) {
+      var validName = inputProduct.name
+        .toLowerCase()
+        .includes(this.nameFilter.toLowerCase());
+      return validName;
+    }
+  },
   computed: {}
 };
 

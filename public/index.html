@@ -63,8 +63,9 @@
 <template id="home-page">
   <div class="container">
   <h1>All products</h1>
+  <input type="text" v-model="nameFilter" placeholder="Search Name" list="names">
     <div class="row">
-      <div class="col-sm-3" v-for="product in products">
+      <div class="col-sm-3" v-for="product in products" v-if="isValid(product)">
         <div class="card">
           <div class="card-body backgroundColor">
             <h4 class="card-title">Name: {{product.name}}</h4>
