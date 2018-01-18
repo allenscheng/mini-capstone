@@ -16,6 +16,12 @@ var HomePage = {
         this.products = response.data;
       }.bind(this)
     );
+    // axios.get("/v1/images").then(
+    //   function(response) {
+    //     this.images = response.data;
+    //   }.bind(this)
+    // );
+    // try to get cards with image, use above
   },
   methods: {
     isValid: function(inputProduct) {
